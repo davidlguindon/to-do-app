@@ -1,0 +1,10 @@
+.mdl-textfield__input{
+  border: 1px solid black;
+}
+.listWithButton{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+}
+.page-content{
+  margin-left: 10%;
+}
