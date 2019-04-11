@@ -1,45 +1,50 @@
 function onReady() {
   const addToDoForm = document.getElementById('addToDoForm');
-  const newToDoText = document.getElementById('newToDoText');
-  const toDoList = document.getElementById('toDoList');
 
-       addToDoForm.addEventListener('submit', (event) => {
-         event.preventDefault();
+  let toDo = [];
+  let id = 0;
 
-         //grabs the value from the dom, assigns it a js variable.
-         let title = newToDoText.value;
+  function createNewToDo(){
+    const NEW_TODO_TEXT = document.getElementById('newToDoText');
+    if(!NEW_TODO_TEXT.value){
+      return;
+    }
+    toDo.push({
+      title: NEW_TODO_TEXT.value,
+      complete: false,
+      id:id
+    });
+    NEW_TODO_TEXT.value = '';
+  }
 
-         console.log('Title: ' + title);
+  function renderTheUI(){
+    toDoList.textContent = '';
 
-         //makes an li
-         let newLi = document.createElement('li');
+    const toDoList = document.getElementById('toDoList');
 
-         //make a button
-         let addDeleteButton = document.createElement('button');
-         addDeleteButton.textContent = 'Delete';
-         addDeleteButton.className += 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent';
-         addDeleteButton.addEventListener('click', function(event){
-           console.log(event)
-           toDoList.removeChild(this.parentElement);
-         })
+    toDo.forEach(function(item){
+    const NEW_LI = document.createElement('li');
+    const CHECKBOX = document.createElement('imput');
+    CHECKBOX.type = 'checkbox';
 
-     if(newToDoText.value !== ''){
-         newLi.textContent = title + ' ';
-         newLi.className += 'listWithButton';
-         newLi.appendChild(addDeleteButton);
-         toDoList.appendChild(newLi);
-         newToDoText.value = '';
-       };
-       });
+    NEW_LI.textContent = toDo.title;
+    NEW_LI.appendChild(CHECKBOX);
 
-       // <!-- Deletable Chip -->
-       // <span class="mdl-chip mdl-chip--deletable">
-       //     <span class="mdl-chip__text">Deletable Chip</span>
-       //     <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-       // </span>
+    toDoList.appendChild(NEW_LI);
+    });
+  }
 
-      // document.getElementsByClassName('list');
-};
-window.onload = function() {
-   onReady();
-};
+
+    ADD_TODO_FORM.addEventListener('submit', event => {
+      event.preventDefault();
+      createNewToDo();
+    });
+
+  }
+
+  renderTheUI();
+
+  window.onload = function() {
+    onReady();
+  };
+}
