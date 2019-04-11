@@ -1,6 +1,7 @@
 function onReady() {
 
   const toDoList = document.getElementById('toDoList');
+  const toDoListHistory = document.getElementById('toDoListHistory');
   let toDo = [];
   let id = 0;
 
@@ -15,20 +16,21 @@ function onReady() {
       id:id
     });
     NEW_TODO_TEXT.value = '';
-    console.log(toDo);
+    // console.log(toDo);
     id++;
+    renderTheUI();
   }
 
   function renderTheUI(){
     toDoList.textContent = '';
-    console.log('working?');
 
     toDo.forEach(function(item){
     const NEW_LI = document.createElement('li');
-    const CHECKBOX = document.createElement('imput');
+    const CHECKBOX = document.createElement('input');
     CHECKBOX.type = 'checkbox';
+    console.log(item);
 
-    NEW_LI.textContent = toDo.title;
+    NEW_LI.textContent = item.title;
     NEW_LI.appendChild(CHECKBOX);
 
     toDoList.appendChild(NEW_LI);
