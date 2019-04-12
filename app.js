@@ -16,9 +16,8 @@ function onReady() {
       id:id
     });
     NEW_TODO_TEXT.value = '';
-    // console.log(toDo);
     id++;
-    console.log('testasdfa: ' + toDo[0].title);
+    console.log('toDo id value after calling CreateNewToDo: ' + toDo.id);
     renderTheUI();
   }
 
@@ -35,11 +34,11 @@ function onReady() {
       delete_button.className += 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent';
       delete_button.textContent = 'Delete';
       delete_button.addEventListener('click', event =>{
-        toDo = toDo.filter(function(item){
-          return item.id !== item.id;
+        toDo = toDo.filter(function(filter){
+          return item.id !== filter.id;
           // return;
         })
-        alert('Item ID: ' + item.id + '     ' + 'toDo ID: ' + toDo[0].id);
+        alert('Item ID: ' + item.id + '     ' + 'toDo ID: ' + toDo.id);
         renderTheUI();
       });
 
